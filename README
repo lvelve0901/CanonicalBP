@@ -1,0 +1,46 @@
+
+Copyright (C) 2017 Honglue Shi
+honglue_dot_shi_at_duke_dot_edu
+
+This database is updated until April 27th 2017
+All crystal structures are with resolution <= 3.0 A
+
+required package for running MismatchPDB:
+pandas v 0.18.1
+numpy v 1.11.2
+json v 2.0.9
+
+written library:
+common
+learna_json
+commontool
+
+pull_pdb_all.py
+is to loop all the PDB file in ./Crystal directory, generate a array text file containing
+all the PDB id in alphabet order. Please copy this output All_crystal.txt into ./PDBinfo 
+
+pdbToStem.py
+is to use DSSR to read all PDB file. output the stem structure file (dssr-stems.pdb) and json file
+and then use pdblib to correct the format of each PDB including adding TER at the right position
+to make sure there are only two segments (strands) within one stem, the output stem structure files
+are in ./Stem
+
+check_json.py
+is to check the sanity of the json files in ./Json
+
+pull_stem_list.py
+is to generate a stemTofrag.txt file, which contains all the stem structure files in ./Stem
+with corresponding requirement (like category is RNA and resolution is below 3.0 A).
+
+copy paste stemTofrag.txt to stem_5bps_dna/rna_crystal folder for DNA entries and RNA entries, respectively
+
+in each folder (stem_5bps_dna/rna_crystal), run
+Process_stemTofrag_nts.py
+Process_stemTofrag_abg.py
+Process_nts.py
+Process_abg.py
+Process_sugar.py
+
+
+These will output, Output_seq.txt, Output_nts.txt, Output_abg.txt and Output_sugar.txt
+
